@@ -1,0 +1,70 @@
+import random
+
+#recupera o BD de palavras
+bancoPalavras = tuple(open('palavras.txt', 'r'))
+   
+#sorteia uma palavra dentro do BD e cria uma array coma a palavra
+palavraSorteada =[]
+numeroAleatorio = random.randrange(0, len(bancoPalavras))
+palavraSorteada += str.upper(bancoPalavras[numeroAleatorio])
+palavraSorteada.pop()
+
+#especifica as variaveis do jogo
+tentativasMax = 15
+score = 0
+tentativasJogador = 0
+acerto = 0
+
+#um array com as letras tentadas
+letrasTentadas = []
+
+for i in range(tentativasMax):
+    if score < len(palavraSorteada):
+        print(palavraSorteada)
+        letraJogador = str.upper(input("Diga uma letra: "))
+        if letraJogador in letrasTentadas:
+            print("Você já tentou essa letra!")
+        else:
+            letrasTentadas.append(letraJogador)
+        
+        
+            for k in range(len(palavraSorteada)):
+                if  palavraSorteada[k] == letraJogador:
+                
+                    score +=1
+                    tentativasJogador +=1
+                    acerto +=1
+            if acerto == 1:
+                print("Acertou uma!")
+                print("Letras tentadas ", letrasTentadas)
+                print("---------------------------------")
+                acerto =0
+            elif acerto == 2:
+                print("Acertou duas!")
+                print("Letras tentadas ", letrasTentadas)
+                print("---------------------------------")
+                acerto =0
+            elif acerto == 3:
+                print("Acertou três!")
+                print("Letras tentadas ", letrasTentadas)
+                print("---------------------------------")
+                acerto =0
+            elif acerto == 4:
+                print("Acertou quatro!")
+                print("Letras tentadas ", letrasTentadas)
+                print("---------------------------------")
+                acerto =0
+            else:
+                print("errou")
+                print("Letras tentadas ", letrasTentadas)
+            continue
+            letrasTentadas.append(letraJogador)
+        
+                           
+           
+if score >= len(palavraSorteada):
+    print("Parabéns! A palavra era ", str.upper(bancoPalavras[numeroAleatorio]))
+    
+else:
+    print("Perdeu mané!")
+    
